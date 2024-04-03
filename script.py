@@ -32,7 +32,7 @@ def add_template(article):
             print("Errore, la pagina non può essere modificata")
 
 def main():
-    lombard_articles = get_lombard_articles(starting)
+    lombard_articles = get_lombard_articles()
     print("Inizio della verifica")
     for article in lombard_articles:
         print(f"Verificando la pagina: {article}")
