@@ -22,8 +22,11 @@ def add_template(article):
     if '{{O' not in text:
         text = '{{O|date={{subst:CURRENTMONTHNAME}} {{subst:CURRENTYEAR}}}}\n'+text
         article.text = text
-        article.save(summary='Sgiontad el template "O"')
-        print(f"Aggiunto template 'O' alla pagina: {article.title()}")
+        try:
+            article.save(summary='Sgiontad el template "O"')
+            print(f"Aggiunto template 'O' alla pagina: {article.title()}")
+        except pywikibot.exceptions.Error:
+            print("Errore, la pagina non può essere modificata")
 
 def main():
     lombard_articles = get_lombard_articles()
