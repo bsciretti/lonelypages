@@ -3,12 +3,20 @@ import argparse
 import time
 
 def get_lombard_articles(start_page=None):
+    """
+    Ottiene un elenco di pagine in lingua lombarda su Wikipedia.
+    Se specificato, inizia dalla pagina specificata, altrimenti recupera tutte le pagine.
+    """
     site = pywikibot.Site("lmo", "wikipedia")
     print("Scaricando elenco pagine...")
+    all_pages = list(site.allpages(namespace=0, filterredir=False))
     if start_page:
-        return [pywikibot.Page(site, start_page)]
-    else:
-        return list(site.allpages(namespace=0, filterredir=False))
+        # Trova l'indice della pagina specificata
+        index = next((i for i, page in enumerate(all_pages) if page.title() == start_page), None)
+        if index is not None:
+            # Filtra l'elenco mantenendo solo le pagine successive
+            all_pages = all_pages[index:]
+    return all_pages
 
         
 def check_links(article):
