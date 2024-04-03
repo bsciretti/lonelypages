@@ -1,8 +1,9 @@
-import pywikibot, time, argparse
+import pywikibot
+import argparse
 
-def get_lombard_articles():
+def get_lombard_articles(start_page=None):
     site = pywikibot.Site("lmo", "wikipedia")
-    print("Scaricando elenco pagine")
+    print("Scaricando elenco pagine...")
     if start_page:
         return [site.page(start_page)]
     else:
@@ -11,7 +12,7 @@ def get_lombard_articles():
 def check_links(article):
     if article.isRedirectPage() or article.isDisambig():
         return False
-    
+    site.throttle()
     references = article.getReferences()
     #print(references)
     for reference in references:
@@ -28,22 +29,20 @@ def add_template(article):
         try:
             article.save(summary='Sgiontad el template "O"')
             print(f"Aggiunto template 'O' alla pagina: {article.title()}")
-        except pywikibot.exceptions.Error:
-            print("Errore, la pagina non può essere modificata")
+        except pywikibot.exceptions.Error as e:
+            print(f"Errore durante il salvataggio della pagina '{article.title()}': {e}")
 
 def main():
-    lombard_articles = get_lombard_articles()
-    print("Inizio della verifica")
-    for article in lombard_articles:
-        print(f"Verificando la pagina: {article}")
-        time.sleep(3)
-        if check_links(article):
-            add_template(article)
-
-if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Script per aggiungere il template 'O' a Wikipedia in lombardo.")
     parser.add_argument("-start", nargs="?", help="Titolo della pagina da cui iniziare il controllo.", dest="start_page")
     args = parser.parse_args()
 
-    main()
+    lombard_articles = get_lombard_articles(args.start_page)
+    print("Inizio della verifica...")
+    for article in lombard_articles:
+        print(f"Verificando la pagina: {article.title()}")
+        if check_links(article):
+            add_template(article)
 
+if __name__ == "__main__":
+    main()
