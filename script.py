@@ -8,6 +8,7 @@ def get_lombard_articles(start_page=None):
         return [pywikibot.Page(site, start_page)]
     else:
         return list(site.allpages(namespace=0, filterredir=False))
+
         
 def check_links(article):
     if article.isRedirectPage() or article.isDisambig():
