@@ -12,9 +12,11 @@ Script per l'inserimento del template {{O}}, attualmente utilizzato su lmo.wikip
 - - Non hanno link entranti o hanno link entranti solo da NS diversi da zero
   - Non hanno già il template O
   - Non sono protette (in tal caso il bot non può modificarle)
+ 
+## Parametri
+- start: voce da cui iniziare
 
 ## Da aggiungere
 - [ ] Selettore del sito da controllare e configurazione multiedizione (come su lonelypages.py integrato in PWB)
 - [ ] Possibilità di scaricare e usare una lista di voci, per ridurre l'onere sul server
-- [ ] Possibilità di partire da una specifica voce, utile ad esempio in caso di crash e interruzioni
 - [ ] Utilizzo di espressioni regolari per identificare la presenza del template O
