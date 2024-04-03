@@ -19,7 +19,6 @@ def check_links(article):
 
 def add_template(article):
     text = article.text
-    time.sleep(3)
     if '{{O' not in text:
         text = '{{O|date={{subst:CURRENTMONTHNAME}} {{subst:CURRENTYEAR}}}}\n'+text
         article.text = text
@@ -31,6 +30,7 @@ def main():
     print("Inizio della verifica")
     for article in lombard_articles:
         print(f"Verificando la pagina: {article}")
+        time.sleep(3)
         if check_links(article):
             add_template(article)
 
