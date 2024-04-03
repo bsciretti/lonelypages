@@ -32,7 +32,7 @@ def add_template(article):
             print("Errore, la pagina non può essere modificata")
 
 def main():
-    lombard_articles = get_lombard_articles()
+    lombard_articles = get_lombard_articles(starting)
     print("Inizio della verifica")
     for article in lombard_articles:
         print(f"Verificando la pagina: {article}")
@@ -45,5 +45,5 @@ if __name__ == "__main__":
     parser.add_argument("-start", nargs="?", help="Titolo della pagina da cui iniziare il controllo.", dest="start_page")
     args = parser.parse_args()
 
-    main(args.start_page)
+    main()
 
