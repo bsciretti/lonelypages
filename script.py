@@ -1,5 +1,6 @@
 import pywikibot
 import argparse
+import time
 
 def get_lombard_articles(start_page=None):
     site = pywikibot.Site("lmo", "wikipedia")
@@ -13,7 +14,7 @@ def get_lombard_articles(start_page=None):
 def check_links(article):
     if article.isRedirectPage() or article.isDisambig():
         return False
-    site.throttle()
+    time.sleep(3)
     references = article.getReferences()
     #print(references)
     for reference in references:
