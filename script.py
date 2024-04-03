@@ -5,7 +5,7 @@ def get_lombard_articles(start_page=None):
     site = pywikibot.Site("lmo", "wikipedia")
     print("Scaricando elenco pagine...")
     if start_page:
-        return [site.page(start_page)]
+        return [pywikibot.Page(site, start_page)]
     else:
         return list(site.allpages(namespace=0, filterredir=False))
         
