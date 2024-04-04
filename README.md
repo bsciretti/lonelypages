@@ -20,3 +20,4 @@ Script per l'inserimento del template {{O}}, attualmente utilizzato su lmo.wikip
 - [ ] Selettore del sito da controllare e configurazione multiedizione (come su lonelypages.py integrato in PWB)
 - [ ] Possibilità di scaricare e usare una lista di voci, per ridurre l'onere sul server
 - [ ] Utilizzo di espressioni regolari per identificare la presenza del template O
+- [ ] Riconoscimento delle voci con link che provengono solo da anni, giorni o template disambiguanti
